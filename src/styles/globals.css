@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #050505;
+  --color-grid-even: #0d1b2a;
+  --color-grid-odd: #1b263b;
+  --color-snake-head: #00f5d4;
+  --color-snake-body: #00b8a0;
+  --color-food: #ff6b6b;
+  --color-ui-accent: #00f5d4;
+}
+
+/* Contrast boost via CSS variable */
+@media (prefers-contrast: more) {
+  :root {
+    --contrast-high: 1;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--color-bg);
+  color: white;
+  overscroll-behavior: none;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100vw;
+}
+
+/* Canvas touch handling */
+.canvas-wrapper {
+  touch-action: none;
+}
