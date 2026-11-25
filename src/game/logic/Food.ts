@@ -1,12 +1,12 @@
-import type { Segment } from './Grid.ts'
+import { PRNG } from './PRNG'
 
 export type FoodState = {
-  position: Segment
+  position: { x: number; z: number }
   eatenCount: number
 }
 
-export function createFood(prng: PRNG, snakeSegments: Segment[], gridSize: number): FoodState {
-  const allCells: Segment[] = []
+export function createFood(prng: PRNG, snakeSegments: { x: number; z: number }[], gridSize: number): FoodState {
+  const allCells: { x: number; z: number }[] = []
   for (let x = 0; x < gridSize; x++) {
     for (let z = 0; z < gridSize; z++) {
       if (!snakeSegments.some(s => s.x === x && s.z === z)) {
@@ -23,6 +23,6 @@ export function createFood(prng: PRNG, snakeSegments: Segment[], gridSize: numbe
   return { position: allCells[idx], eatenCount: 1 }
 }
 
-export function foodEaten(current: FoodState, prng: PRNG, snakeSegments: Segment[], gridSize: number): FoodState {
+export function foodEaten(_current: FoodState, prng: PRNG, snakeSegments: { x: number; z: number }[], gridSize: number): FoodState {
   return createFood(prng, snakeSegments, gridSize)
 }

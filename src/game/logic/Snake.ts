@@ -41,7 +41,7 @@ export function isOpposite(a: Direction, b: Direction): boolean {
 }
 
 export function moveHead(head: Segment, dir: Direction): Segment {
-  return { x: head.x + dir.x, z: head.z + dir.z }
+  return { x: head.x + (dir!.x), z: head.z + (dir!.z) }
 }
 
 /**

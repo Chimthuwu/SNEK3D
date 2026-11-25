@@ -14,7 +14,6 @@ export type InputEvent = {
 
 export class InputManager {
   private keys: Set<string> = new Set()
-  private pendingSwipe: SwipeVector | null = null
   private state: SnakeState
   private listeners: ((e: InputEvent) => void)[] = []
 
@@ -54,19 +53,11 @@ export class InputManager {
     }
 
     if (absDy > absDx) {
-      if (s.dy < -30) {
-        return { x: 1, z: 0 }
-      }
-      if (s.dy > 30) {
-        return { x: -1, z: 0 }
-      }
+      if (s.dy < -30) return { x: 1, z: 0 }
+      if (s.dy > 30) return { x: -1, z: 0 }
     } else {
-      if (s.dx < -30) {
-        return { x: 0, z: -1 }
-      }
-      if (s.dx > 30) {
-        return { x: 0, z: 1 }
-      }
+      if (s.dx < -30) return { x: 0, z: -1 }
+      if (s.dx > 30) return { x: 0, z: 1 }
     }
 
     return null
@@ -110,6 +101,5 @@ export class InputManager {
 
   reset(): void {
     this.keys.clear()
-    this.pendingSwipe = null
   }
 }

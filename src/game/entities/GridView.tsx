@@ -1,5 +1,3 @@
-// Isometric grid view — 225 InstancedMesh planes, alternating colors.
-
 import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
@@ -8,8 +6,6 @@ import { GRID_COLORS } from '../config'
 
 export function GridView() {
   const meshRef = useRef<THREE.InstancedMesh>(null)
-
-  // Build matrices once on mount.
   const matrices = useRef<THREE.Matrix4[] | null>(null)
 
   if (matrices.current === null) {
@@ -35,16 +31,9 @@ export function GridView() {
   })
 
   return (
-    <instancedMesh
-      ref={meshRef}
-      args={[null, null, GRID_SIZE * GRID_SIZE]}
-    >
+    <instancedMesh ref={meshRef} args={[undefined, undefined, GRID_SIZE * GRID_SIZE]}>
       <planeGeometry args={[1, 1]} />
-      <meshStandardMaterial
-        color={GRID_COLORS.even}
-        roughness={0.8}
-        metalness={0.2}
-      />
+      <meshStandardMaterial color={GRID_COLORS.even} roughness={0.8} metalness={0.2} />
     </instancedMesh>
   )
 }
